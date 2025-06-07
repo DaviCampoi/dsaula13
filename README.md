@@ -66,3 +66,5 @@ O servidor estará disponível em: [http://localhost:8080](http://localhost:8080
 Documentação api: [http://localhost:8080/docs](http://localhost:8080/docs)
 
 Observação: ./Insomnia.yml DEVE utilizado no insomnia
+
+professor, não consegui averiguar com testes se o programa estava funcionando por conta da minha máquina, peço que seja compreensivel ao avaliar o meu arquivo, obrigado!
