@@ -1,24 +1,19 @@
-import express from 'express';
-import chalk from 'chalk';
-
-import "./bootstrap/app.js"
+import express from "express";
+import chalk from "chalk";
 import routes from "./routes/routes.js";
-import "./config/sequelize_relations.js";
 
-/** Iniciar roteador */
+import { swaggerUi, swaggerSpec } from "./swagger.js";
+
 const app = express();
 
-/** Inicializar rotas  */
+app.use(express.json());
 app.use("/", routes);
 
-/** Escolher as portas baseado se foi inicializado com ou sem nginx */
-const webPort = process.env.PORT || 3000;
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const nodePort = process.env.NODE_PORT || webPort;
+const port = process.env.PORT || 3000;
 
-console.log(chalk.blue(`Container: ${process.env.IS_CONTAINER}`));
-
-app.listen(nodePort, () => {
-    console.log(chalk.green(`Servidor: http://localhost:${webPort}`));
-    console.log(chalk.yellow(`Apis Swagger: http://localhost:${webPort}/docs`));
+app.listen(port, () => {
+  console.log(chalk.green(`Servidor rodando em http://localhost:${port}`));
+  console.log(chalk.yellow(`Documentação Swagger em http://localhost:${port}/docs`));
 });
